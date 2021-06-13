@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+<script src="index.js"></script>
+<link rel="stylesheet" href="index.css">
+<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    </head>
+    <body>
+      <nav class="navigation">
+       <ul class="nav-list">
+        <li class="company" style="font-weight: 700;">EQ Works</li>
+        <a href="index-table_search.html"><li class="table-search active">Table with Search Enabled</li></a>
+        <a href="index-chart.html"><li class="chart">Chart</li></a>
+        <a href="index-geolocation.html"><li class="chart">Geo Tagging</li></a>
+       </ul> 
+      </nav>
+      <h1 class="heading">Rate Limiter</h1>
+      <h4> Hit an API:</h4>
+      <button id="api1" class="btn btn-primary">API 1 </button>
+      <button id="api2" class="btn btn-danger">API 2 </button>
+      <button id="api3" class="btn btn-success">API 3 </button>
+
+      <pre id="output"></pre>
+
+      <script>
+        
+        const api1 = document.getElementById("api1");
+        const api2 = document.getElementById("api2");
+        const api3 = document.getElementById("api3");
+        const output = document.getElementById("output");
+        
+        api1.addEventListener('click', () => hitApi(1));
+        api2.addEventListener('click', () => hitApi(2));
+        api3.addEventListener('click', () => hitApi(3));
+
+        async function hitApi(id){
+           const res = await fetch('/api'+id,{method:'POST'}).then(t => t.json())
+
+           output.innerText += "\n Response:  " + res.response + "  Calls =  " + res.callsInAMinute
+        }
+
+
+
+
+     </script>
+     <script src="../index.js"></script>
+   
+      </body>
+      </html>
